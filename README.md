@@ -71,7 +71,7 @@ Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK Stack (Elasticsearch, Fl
 
 Essa estrutura define os principais componentes do cluster Kubernetes, detalhando o papel de cada um e as funções essenciais para a operação do ambiente on-premise.
 
-# CONFIGURANDO CLUSTER K8S LOCAL OS LX-UBUNTU-24.04
+# CONFIGURANDO CLUSTER K8S
 
 </p>
 
