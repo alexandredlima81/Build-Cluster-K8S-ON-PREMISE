@@ -41,3 +41,4 @@ Ferramentas de Logging: Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK 
 Essa estrutura define os principais componentes do cluster Kubernetes, detalhando o papel de cada um e as funções essenciais para a operação do ambiente on-premise.
 ```
 
+
