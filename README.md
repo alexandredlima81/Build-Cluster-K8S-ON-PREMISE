@@ -1,5 +1,6 @@
 # Cluster K8S ON PREMISE
 <p align="justify">
+
 Este repositório contém a configuração e os arquivos necessários para a criação de um **Cluster Kubernetes On-Premise**. A configuração ainda não utiliza o conceito de infraestrutura como código (IaC) para garantir que o ambiente Kubernetes seja provisionado e gerenciado de forma automatizada, permitindo maior controle e customização em ambientes locais.
 
 A abordagem utilizada permite a instalação de componentes essenciais do Kubernetes, como o etcd, apiserver, controller-manager, scheduler, e os workers, além de recursos opcionais, como ingress controllers e monitoramento.
