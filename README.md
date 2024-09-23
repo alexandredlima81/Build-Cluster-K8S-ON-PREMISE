@@ -18,33 +18,49 @@ Antes de começar a instalação, certifique-se de que seu ambiente atenda aos s
 ## Estrutura do Cluster
 O cluster Kubernetes on-premise é composto pelos seguintes componentes e servidores:
 
-**Master - Control Plane**:  responsável por controlar o estado do cluster e gerenciar a comunicação entre os componentes.
+**Master - Control Plane:**  
+- Nó responsável por controlar o estado do cluster e gerenciar a comunicação entre os componentes.
 
-**etcd:** Armazenamento distribuído chave-valor, utilizado para manter o estado de todos os componentes do cluster.
+**etcd:** 
+- Armazenamento distribuído chave-valor, utilizado para manter o estado de todos os componentes do cluster.
 
-**kube-apiserver:** Interface de comunicação com o cluster, responsável por expor a API do Kubernetes.
+**kube-apiserver:** 
+- Interface de comunicação com o cluster, responsável por expor a API do Kubernetes.
 
-**kube-controller-manager:** Controlador que garante o estado desejado dos objetos no cluster (replication controller, endpoints, etc.).
+**kube-controller-manager:** 
+- Controlador que garante o estado desejado dos objetos no cluster (replication controller, endpoints, etc.).
 
-**kube-scheduler:** Responsável por distribuir as cargas de trabalho (pods) entre os nós (workers) com base nos recursos disponíveis.
+**kube-scheduler:** 
+- Responsável por distribuir as cargas de trabalho (pods) entre os nós (workers) com base nos recursos disponíveis.
 
-**Workers:** Nós de trabalho.
+**Workers:** 
+- Nós de trabalho.
 
-**kubelet:** Agente de cada nó que aplica as instruções do control plane, garantindo que os contêineres rodem conforme especificado.
+**kubelet:** 
+- Agente de cada nó que aplica as instruções do control plane, garantindo que os contêineres rodem conforme especificado.
 
-**kube-proxy:** Gerencia as regras de rede que permitem a comunicação entre os pods.
+**kube-proxy:** 
+- Gerencia as regras de rede que permitem a comunicação entre os pods.
 
-**Container Runtime:**  Executa os contêineres no nó (e.g., Docker ou containerd).
+**Container Runtime:**  
+- Responsável pela execução dos contêineres no nó (e.g., Docker ou containerd).
 
 # Rede e Comunicação:
 
-CNI (Container Network Interface): Plugin de rede para permitir a comunicação entre os pods (exemplos: Flannel, Calico).
-Load Balancer: Balanceador de carga para distribuir o tráfego de entrada para os serviços expostos no cluster.
-Componentes Opcionais:
+**CNI (Container Network Interface):** 
+- Plugin de rede para permitir a comunicação entre os pods (exemplos: Flannel, Calico).
+**Load Balancer:**
+- Balanceador de carga para distribuir o tráfego de entrada para os serviços expostos no cluster.
 
-Ingress Controller: Controlador para gerenciar o acesso externo a serviços no cluster.
-Ferramentas de Monitoramento: Como o Prometheus para monitorar métricas do cluster e o Grafana para visualizações.
-Ferramentas de Logging: Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK Stack (Elasticsearch, Fluentd, Kibana) para centralizar os logs.
+# Componentes Opcionais:
+
+**Ingress Controller:**
+- Controlador para gerenciar o acesso externo a serviços no cluster.
+**Ferramentas de Monitoramento:** 
+- Como o Prometheus para monitorar métricas do cluster e o Grafana para visualizações.
+**Ferramentas de Logging:**
+- Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK Stack (Elasticsearch, Fluentd, Kibana) para centralizar os logs.
+
 Essa estrutura define os principais componentes do cluster Kubernetes, detalhando o papel de cada um e as funções essenciais para a operação do ambiente on-premise.
 
 
