@@ -55,8 +55,8 @@ O cluster Kubernetes on-premise é composto pelos seguintes componentes e servid
 
 # Componentes Opcionais:
 
-**Ingress Controller:**\ 
-Controlador para gerenciar o acesso externo a serviços no cluster.
+**Ingress Controller:**\
+- Controlador para gerenciar o acesso externo a serviços no cluster.
 
 **Ferramentas de Monitoramento:** 
 - Como o Prometheus para monitorar métricas do cluster e o Grafana para visualizações.\
