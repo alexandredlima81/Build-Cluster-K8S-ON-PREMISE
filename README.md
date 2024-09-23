@@ -73,6 +73,22 @@ Essa estrutura define os principais componentes do cluster Kubernetes, detalhand
 
 # CONFIGURANDO CLUSTER K8S
 
+## 1: CONFIGURAR O HOSTNAME (REALIZAR NOS MASTERS E NOS WORKERS)
+
+bash
+
+$ sudo hostnamectl set-hostname “k8s-master01” && exec bash
+
+## Links de referência
+
+https://markdown.net.br/sintaxe-basica/
+
+https://docs.docker.com/engine/install/ubuntu/
+
+https://kubernetes.io/docs/setup/
+
+
+
 </p>
 
 
