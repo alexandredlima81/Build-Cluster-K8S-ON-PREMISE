@@ -49,6 +49,7 @@ O cluster Kubernetes on-premise é composto pelos seguintes componentes e servid
 
 **CNI (Container Network Interface):** \
 Plugin de rede para permitir a comunicação entre os pods (exemplos: Flannel, Calico).
+Aqui estaremos utilizando o Calico.
 
 **Load Balancer:** \
 Balanceador de carga para distribuir o tráfego de entrada para os serviços expostos no cluster.
