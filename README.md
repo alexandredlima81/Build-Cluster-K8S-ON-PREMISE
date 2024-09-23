@@ -49,15 +49,16 @@ O cluster Kubernetes on-premise é composto pelos seguintes componentes e servid
 
 **CNI (Container Network Interface):** 
 - Plugin de rede para permitir a comunicação entre os pods (exemplos: Flannel, Calico).
+
 **Load Balancer:**
 - Balanceador de carga para distribuir o tráfego de entrada para os serviços expostos no cluster.
 
 # Componentes Opcionais:
 
 **Ingress Controller:**
-- Controlador para gerenciar o acesso externo a serviços no cluster.
+- Controlador para gerenciar o acesso externo a serviços no cluster.\
 **Ferramentas de Monitoramento:** 
-- Como o Prometheus para monitorar métricas do cluster e o Grafana para visualizações.
+- Como o Prometheus para monitorar métricas do cluster e o Grafana para visualizações.\
 **Ferramentas de Logging:**
 - Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK Stack (Elasticsearch, Fluentd, Kibana) para centralizar os logs.
 
