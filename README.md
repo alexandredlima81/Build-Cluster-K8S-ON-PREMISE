@@ -8,12 +8,12 @@ A abordagem utilizada permite a instalação de componentes essenciais do Kubern
 
 Antes de começar a instalação, certifique-se de que seu ambiente atenda aos seguintes pré-requisitos:
 
-1. Um sistema Ubuntu 24.04 LTS.
-2. Acesso privilegiado ao sistema (usuário root ou sudo).
-3. Conexão ativa com a internet.
-4. Mínimo de 2 GB de RAM ou mais.
-5. Mínimo de 2 núcleos de CPU (ou 2 vCPUs).
-6. 20 GB de espaço livre em disco em /var (ou mais).
+- Um sistema Ubuntu 24.04 LTS.
+- Acesso privilegiado ao sistema (usuário root ou sudo).
+- Conexão ativa com a internet.
+- Mínimo de 2 GB de RAM ou mais.
+- Mínimo de 2 núcleos de CPU (ou 2 vCPUs).
+- 20 GB de espaço livre em disco em /var (ou mais).
 
 ## Estrutura do Cluster
 O cluster Kubernetes on-premise é composto pelos seguintes componentes e servidores:
