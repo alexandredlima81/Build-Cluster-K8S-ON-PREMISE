@@ -3,7 +3,7 @@
 # Cluster K8S ON PREMISE
 <p align="justify">
 
-Este repositório contém a configuração e os arquivos necessários para a criação de um **Cluster Kubernetes On-Premise**. A configuração ainda não utiliza o conceito de infraestrutura como código (IaC) para garantir que o ambiente Kubernetes seja provisionado e gerenciado de forma automatizada, permitindo maior controle e customização em ambientes locais.
+Este repositório contém a configuração e os arquivos necessários para a criação de um **Cluster Kubernetes On-Premise** utilizando SO UBUNTU-24.04 Server. A configuração ainda não utiliza o conceito de infraestrutura como código (IaC) para garantir que o ambiente Kubernetes seja provisionado e gerenciado de forma automatizada, permitindo maior controle e customização em ambientes locais.
 
 A abordagem utilizada permite a instalação de componentes essenciais do Kubernetes, como o etcd, apiserver, controller-manager, scheduler, e os workers, além de recursos opcionais, como ingress controllers e monitoramento.
 
@@ -11,7 +11,8 @@ A abordagem utilizada permite a instalação de componentes essenciais do Kubern
 
 Antes de começar a instalação, certifique-se de que seu ambiente atenda aos seguintes pré-requisitos:
 
-- Um sistema Ubuntu 24.04 LTS.
+- Ambiente para deploy, no meu caso este ambiente foi criado em um Cluster de Hypervisor PROXMOX.
+- ISO SO Ubuntu 24.04 LTS.
 - Acesso privilegiado ao sistema (usuário root ou sudo).
 - Conexão ativa com a internet.
 - Mínimo de 2 GB de RAM ou mais.
@@ -69,6 +70,9 @@ Como o Prometheus para monitorar métricas do cluster e o Grafana para visualiza
 Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK Stack (Elasticsearch, Fluentd, Kibana) para centralizar os logs.
 
 Essa estrutura define os principais componentes do cluster Kubernetes, detalhando o papel de cada um e as funções essenciais para a operação do ambiente on-premise.
+
+# CONFIGURANDO CLUSTER K8S LOCAL OS LX-UBUNTU-24.04
+
 </p>
 
 
