@@ -77,7 +77,7 @@ Essa estrutura define os principais componentes do cluster Kubernetes, detalhand
 
 Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo hostname ao nó Master.
 
-Sintaxe:
+**Sintaxe:**
 ```bash
 $ sudo hostnamectl set-hostname “k8s-master01” && exec bash
 ```
@@ -90,13 +90,13 @@ Ajuste o IP, através do netplan.
 
 Para editar o arquivos use a sintaxe a seguir:
 
-Sintaxe:
+**Sintaxe:**
 ```bash
 $ nano /etc/netplan/50-cloud-init.yaml
 ```
 ou se preferir
 
-Sintaxe:
+**Sintaxe:**
 ```bash
 $ vim /etc/hosts/50-cloud-init.yaml
 ```
@@ -108,20 +108,20 @@ $ vim /etc/hosts/50-cloud-init.yaml
 
 Ao salvar o arquivo, Valide a configuração antes de aplicar para garantir que não há erros.
 
-Sintaxe:
+**Sintaxe:**
 ```bash
 $ sudo netplan try
 ```
 
 Aplicar a configuração permanentemente após testar:
 
-Sintaxe:
+**Sintaxe:**
 ```bash
 $ sudo netplan apply
 ```
 Feito isso valide se o ip foi atribuido.
 
-Sintaxe:
+**Sintaxe:**
 ```bash
 $ sudo ip address
 ```
@@ -131,11 +131,13 @@ $ sudo ip address
 Neste projeto, estamos propondo dois nós Master e três nós Worker. 
 Para editar o arquivos use a sintaxe a seguir:
 
+**Sintaxe:**
 ```bash
 $ nano /etc/hosts
 ```
 ou se preferir
 
+**Sintaxe:**
 ```bash
 $ vim /etc/hosts
 ```
