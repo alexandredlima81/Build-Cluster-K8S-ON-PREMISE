@@ -106,7 +106,7 @@ $ sudo vim /etc/hosts/50-cloud-init.yaml
 >Se atente ao nome da nome da interface a ser ajustado no arquivo (***eth0, eth1, enp0s1,*** etc...)
 >
 
-Ao salvar o arquivo, Valide a configuração antes de aplicar para garantir que não há erros.
+Ao salvar o arquivo, valide a configuração antes de aplicar para garantir que não há erros.
 
 **Sintaxe:**
 ```bash
@@ -145,7 +145,7 @@ $ sudo vim /etc/hosts
 Adicione o conteúdo conforme o exemplo a seguir. Como neste caso não temos um DNS, é necessário adicionar os endereços IP com seus respectivos nomes para permitir a resolução de nomes dentro do cluster Kubernetes.
 
 >
->**OBSERVAÇÂO:**Aqui não estaremos usando um servidor de DNS, por este motivo a necessidade de editar o arquivo **hosts**.
+>**OBSERVAÇÂO:** Aqui não estaremos usando um servidor de DNS, por este motivo a necessidade de editar o arquivo **hosts**.
 >
 
 Exemplo de adição ao arquivo **/etc/hosts**:
