@@ -156,6 +156,36 @@ Exemplo de adição ao arquivo **/etc/hosts**:
 >192.168.18.205   k8sworker03
 >
 
+## 5: DESABILITAR O SWAP (REALIZAR NOS MASTERS E NOS WORKERS)
+
+É essencial para clusters Kubernetes desativar a **swap**, pois o K8s exige que o swap esteja desabilitado para garantir a correta alocação de recursos e evitar problemas de desempenho.
+
+**Sintaxe:**
+```bash
+$ sudo swapoff -a
+```
+
+Em seguida comentamos a entrada do **swap** no arquivo **/etc/fstab** para evitar que ele seja ativado após reinicializações.
+
+**Sintaxe:**
+```bash
+$ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
+## 6: ATUALIZAR O SISTEMA (REALIZAR NOS MASTERS E NOS WORKERS)
+
+Atualize a lista de pacotes disponíveis no repositório.
+
+**Sintaxe:**
+```bash
+$ sudo apt update
+```
+
+Instale as atualizações de pacotes no sistema para garantir que o ambiente esteja com as versões mais recentes e seguras dos softwares.
+
+**Sintaxe:**
+```bash
+$ sudo apt upgrade -y
+```
 
 
 ## Links de referência
