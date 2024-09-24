@@ -196,7 +196,7 @@ $ sudo apt upgrade -y
 ```
 
 ## 6: ADICIONAR KERNEL MODULES E PARÂMETROS 
-# <span style="color:red;">(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)</span>
+<span style="color:red;">(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)</span>
 
 
 Essas alterações são necessárias para habilitar o roteamento e a filtragem de pacotes 
