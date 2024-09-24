@@ -81,10 +81,61 @@ Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo 
 $ sudo hostnamectl set-hostname “k8s-master01” && exec bash
 ```
 
+## 2: CONFIGURAR INTERFACE DE REDE USANDO O NETPLAN (VALIDAR O NOME DA INTERFACE) (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+
+Aqui estamos utilizando o CIDR 192.168.18.0/24. 
+Ajuste o CIDR conforme o range de endereço IP necessário para o seu cenário.
+Ajuste o IP, através do netplan.
+
+Para editar o arquivos use a sintaxe a seguir:
+
+```bash
+$ nano /etc/netplan/50-cloud-init.yaml
+```
+ou se preferir
+
+```bash
+$ vim /etc/hosts/50-cloud-init.yaml
+```
+
+>
+>network: \
+>  version: 2 \
+>  renderer: networkd \
+>  ethernets: \
+>    enp0s3: \
+>      dhcp4: no \
+>      addresses: [192.168.18.201/24] \
+>      nameservers: \
+>          addresses: [8.8.8.8, 8.8.2.2, 192.168.18.1, 192.168.18.2] \
+>      routes: \
+>        - to: default \
+>          via: 192.168.18.1 \
+>
+
+Ao salvar o arquivo, Valide a configuração antes de aplicar para garantir que não há erros.
+
+Sintaxe:
+```bash
+$ sudo netplan try
+```
+
+Aplicar a configuração permanentemente após testar:
+
+Sintaxe:
+```bash
+$ sudo netplan apply
+```
+Feito isso valide se o ip foi atribuido.
+
+Sintaxe:
+```bash
+$ sudo ip address
+```
+
 ## 2: CONFIGURAR O ARQUIVO /etc/hosts (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
-Aqui estamos utilizando o CIDR 192.168.18.0/24. Neste projeto, estamos propondo dois nós Master e três nós Worker. Ajuste o CIDR conforme o range necessário para o seu cenário.
-
+Neste projeto, estamos propondo dois nós Master e três nós Worker. 
 Para editar o arquivos use a sintaxe a seguir:
 
 ```bash
@@ -111,7 +162,7 @@ Exemplo de adição ao arquivo **/etc/hosts**:
 >
 
 
-ou se prefirir
+
 ## Links de referência
 
 https://markdown.net.br/sintaxe-basica/
