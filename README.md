@@ -52,7 +52,7 @@ Responsável pela execução dos contêineres no nó (e.g., Docker ou containerd
 # Rede e Comunicação:
 
 **CNI (Container Network Interface):** \
-Plugin de rede para permitir a comunicação entre os pods (exemplos: Flannel, Calico).
+Plugin de rede para permitir a comunicação entre os pods (exemplos: Flannel, Calico). \
 Aqui estaremos utilizando o Calico.
 
 **Load Balancer:** \
