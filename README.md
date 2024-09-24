@@ -144,6 +144,10 @@ $ sudo vim /etc/hosts
 
 Adicione o conteúdo conforme o exemplo a seguir. Como neste caso não temos um DNS, é necessário adicionar os endereços IP com seus respectivos nomes para permitir a resolução de nomes dentro do cluster Kubernetes.
 
+>
+>**OBSERVAÇÂO:**Aqui não estaremos usando um servidor de DNS, por este motivo a necessidade de editar o arquivo **hosts**.
+>
+
 Exemplo de adição ao arquivo **/etc/hosts**:
 
 >
