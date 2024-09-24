@@ -102,8 +102,8 @@ $ vim /etc/hosts/50-cloud-init.yaml
 ```
 
 >
->Neste repositorio temos um arquivo **50-cloud-init.yaml** para referência.
->Se atente ao nome da nome da interface a ser ajustado no arquivo ( eth0, eth1, enp0s1, etc...)
+>Neste repositorio temos um arquivo **50-cloud-init.yaml** para referência. \
+>Se atente ao nome da nome da interface a ser ajustado no arquivo (***eth0, eth1, enp0s1,*** etc...)
 >
 
 Ao salvar o arquivo, Valide a configuração antes de aplicar para garantir que não há erros.
