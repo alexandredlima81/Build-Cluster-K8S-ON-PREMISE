@@ -195,7 +195,8 @@ Instale as atualizações de pacotes no sistema para garantir que o ambiente est
 $ sudo apt upgrade -y
 ```
 
-## 6: ADICIONAR KERNEL MODULES E PARÂMETROS \ (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+## 6: ADICIONAR KERNEL MODULES E PARÂMETROS
+(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 Essas alterações são necessárias para habilitar o roteamento e a filtragem de pacotes 
 entre redes no Kubernetes. Os módulos do kernel overlay e br_netfilter permitem a comunicação 
