@@ -73,7 +73,8 @@ Essa estrutura define os principais componentes do cluster Kubernetes, detalhand
 
 # CONFIGURANDO CLUSTER K8S
 
-## 1: CONFIGURAR O HOSTNAME (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+## 1: CONFIGURAR O HOSTNAME 
+## (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo hostname ao nó Master.
 
@@ -82,7 +83,8 @@ Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo 
 $ sudo hostnamectl set-hostname “k8s-master01” && exec bash
 ```
 
-## 2: CONFIGURAR INTERFACE DE REDE USANDO O NETPLAN (VALIDAR O NOME DA INTERFACE) (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+## 2: CONFIGURAR INTERFACE DE REDE USANDO O NETPLAN (VALIDAR O NOME DA INTERFACE) 
+## (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 Aqui estamos utilizando o CIDR 192.168.18.0/24. 
 Ajuste o CIDR conforme o range de endereço IP necessário para o seu cenário.
@@ -126,7 +128,8 @@ Feito isso valide se o ip foi atribuido.
 $ sudo ip address
 ```
 
-## 3: CONFIGURAR O ARQUIVO /etc/hosts (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+## 3: CONFIGURAR O ARQUIVO /etc/hosts 
+## (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 Neste projeto, estamos propondo dois nós Master e três nós Worker. 
 Para editar o arquivos use a sintaxe a seguir:
@@ -160,7 +163,8 @@ Exemplo de adição ao arquivo **/etc/hosts**:
 >192.168.18.205   k8sworker03
 >
 
-## 4: DESABILITAR O SWAP (REALIZAR NOS MASTERS E NOS WORKERS)
+## 4: DESABILITAR O SWAP 
+## (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 É essencial para clusters Kubernetes desativar a **swap**, pois o K8s exige que o swap esteja desabilitado para garantir a correta alocação de recursos e evitar problemas de desempenho.
 
@@ -175,8 +179,8 @@ Em seguida comentamos a entrada do **swap** no arquivo **/etc/fstab** para evita
 ```bash
 $ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-## 5: ATUALIZAR O SISTEMA (REALIZAR NOS MASTERS E NOS WORKERS)
-
+## 5: ATUALIZAR O SISTEMA 
+## (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 Atualize a lista de pacotes disponíveis no repositório.
 
 **Sintaxe:**
@@ -191,7 +195,8 @@ Instale as atualizações de pacotes no sistema para garantir que o ambiente est
 $ sudo apt upgrade -y
 ```
 
-## 6: ADICIONAR KERNEL MODULES E PARÂMETROSs (REALIZAR NOS MASTERS E NOS WORKERS)
+## 6: ADICIONAR KERNEL MODULES E PARÂMETROS
+## (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 Essas alterações são necessárias para habilitar o roteamento e a filtragem de pacotes 
 entre redes no Kubernetes. Os módulos do kernel overlay e br_netfilter permitem a comunicação 
@@ -226,6 +231,7 @@ Aplique as mudanças:
 ```bash
 sudo sysctl --system
 ```
+
 ## Links de referência
 
 https://markdown.net.br/sintaxe-basica/
