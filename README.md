@@ -73,11 +73,45 @@ Essa estrutura define os principais componentes do cluster Kubernetes, detalhand
 
 # CONFIGURANDO CLUSTER K8S
 
-## 1: CONFIGURAR O HOSTNAME (REALIZAR NOS MASTERS E NOS WORKERS)
+## 1: CONFIGURAR O HOSTNAME (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+
+Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo hostname ao nó Master.
 
 ```bash
 $ sudo hostnamectl set-hostname “k8s-master01” && exec bash
 ```
+
+## 2: CONFIGURAR O ARQUIVO /etc/hosts (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+
+Aqui estamos utilizando o CIDR 192.168.18.0/24. Neste projeto, estamos propondo dois nós Master e três nós Worker. Ajuste o CIDR conforme o range necessário para o seu cenário.
+
+Para editar o arquivos use a sintaxe a seguir:
+
+```bash
+$ nano /etc/hosts
+```
+ou se preferir
+
+```bash
+$ vim /etc/hosts
+```
+
+Adicione o conteúdo conforme o exemplo a seguir. Como neste caso não temos um DNS, é necessário adicionar os endereços IP com seus respectivos nomes para permitir a resolução de nomes dentro do cluster Kubernetes.
+
+Exemplo de adição ao arquivo **/etc/hosts**:
+
+>
+>127.0.0.1 localhost
+>127.0.1.1 k8smaster01
+>192.168.18.201   k8smaster01
+>192.168.18.202   k8smaster02
+>192.168.18.203   k8sworker01
+>192.168.18.204   k8sworker02
+>192.168.18.205   k8sworker03
+>
+
+
+ou se prefirir
 ## Links de referência
 
 https://markdown.net.br/sintaxe-basica/
