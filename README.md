@@ -102,8 +102,23 @@ $ vim /etc/hosts/50-cloud-init.yaml
 ```
 
 >
+<<<<<<< HEAD
 >Neste repositorio temos um arquivo **50-cloud-init.yaml** para referência.
 >Se atente ao nome da nome da interface a ser ajustado no arquivo ( eth0, eth1, enp0s1, etc...)
+=======
+>network: \
+  >  version: 2 \
+  >  renderer: networkd \
+>  ethernets: \
+>    enp0s3: \
+>      dhcp4: no \
+>      addresses: [192.168.18.201/24] \
+>      nameservers: \
+>          addresses: [8.8.8.8, 8.8.2.2, 192.168.18.1, 192.168.18.2] \
+>      routes: \
+>        - to: default \
+>          via: 192.168.18.1 \
+>>>>>>> 1400304496c24a53e6910a10fac6f771ffeff966
 >
 
 Ao salvar o arquivo, Valide a configuração antes de aplicar para garantir que não há erros.
