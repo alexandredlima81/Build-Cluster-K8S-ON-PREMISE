@@ -126,7 +126,7 @@ Feito isso valide se o ip foi atribuido.
 $ sudo ip address
 ```
 
-## 2: CONFIGURAR O ARQUIVO /etc/hosts (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
+## 3: CONFIGURAR O ARQUIVO /etc/hosts (REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)
 
 Neste projeto, estamos propondo dois nós Master e três nós Worker. 
 Para editar o arquivos use a sintaxe a seguir:
@@ -160,7 +160,7 @@ Exemplo de adição ao arquivo **/etc/hosts**:
 >192.168.18.205   k8sworker03
 >
 
-## 5: DESABILITAR O SWAP (REALIZAR NOS MASTERS E NOS WORKERS)
+## 4: DESABILITAR O SWAP (REALIZAR NOS MASTERS E NOS WORKERS)
 
 É essencial para clusters Kubernetes desativar a **swap**, pois o K8s exige que o swap esteja desabilitado para garantir a correta alocação de recursos e evitar problemas de desempenho.
 
@@ -175,7 +175,7 @@ Em seguida comentamos a entrada do **swap** no arquivo **/etc/fstab** para evita
 ```bash
 $ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-## 6: ATUALIZAR O SISTEMA (REALIZAR NOS MASTERS E NOS WORKERS)
+## 5: ATUALIZAR O SISTEMA (REALIZAR NOS MASTERS E NOS WORKERS)
 
 Atualize a lista de pacotes disponíveis no repositório.
 
@@ -191,7 +191,41 @@ Instale as atualizações de pacotes no sistema para garantir que o ambiente est
 $ sudo apt upgrade -y
 ```
 
+## 6: ADICIONAR KERNEL MODULES E PARÂMETROSs (REALIZAR NOS MASTERS E NOS WORKERS)
 
+Essas alterações são necessárias para habilitar o roteamento e a filtragem de pacotes 
+entre redes no Kubernetes. Os módulos do kernel overlay e br_netfilter permitem a comunicação 
+entre contêineres, enquanto os parâmetros de rede ajustam o comportamento do kernel para 
+gerenciar tráfego de rede e encaminhamento de pacotes, essenciais para o funcionamento 
+correto do cluster.
+
+Carregue os módulos necessários para o Kubernetes:
+
+**Sintaxe:**
+```bash
+sudo tee /etc/modules-load.d/containerd.conf <<EOF
+overlay
+br_netfilter
+EOF
+sudo modprobe overlay
+sudo modprobe br_netfilter
+```
+Configure os parâmetros do kernel:
+
+**Sintaxe:**
+```bash
+sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+```
+Aplique as mudanças:
+
+**Sintaxe:**
+```bash
+sudo sysctl --system
+```
 ## Links de referência
 
 https://markdown.net.br/sintaxe-basica/
@@ -209,3 +243,4 @@ https://kubernetes.io/docs/setup/
 </p>
 
 
+$ sudo apt update
