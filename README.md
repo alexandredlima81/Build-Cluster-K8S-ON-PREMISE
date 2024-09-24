@@ -92,13 +92,13 @@ Para editar o arquivos use a sintaxe a seguir:
 
 **Sintaxe:**
 ```bash
-$ nano /etc/netplan/50-cloud-init.yaml
+$ sudo nano /etc/netplan/50-cloud-init.yaml
 ```
 ou se preferir
 
 **Sintaxe:**
 ```bash
-$ vim /etc/hosts/50-cloud-init.yaml
+$ sudo vim /etc/hosts/50-cloud-init.yaml
 ```
 
 >
@@ -133,13 +133,13 @@ Para editar o arquivos use a sintaxe a seguir:
 
 **Sintaxe:**
 ```bash
-$ nano /etc/hosts
+$ sudo nano /etc/hosts
 ```
 ou se preferir
 
 **Sintaxe:**
 ```bash
-$ vim /etc/hosts
+$ sudo vim /etc/hosts
 ```
 
 Adicione o conteúdo conforme o exemplo a seguir. Como neste caso não temos um DNS, é necessário adicionar os endereços IP com seus respectivos nomes para permitir a resolução de nomes dentro do cluster Kubernetes.
