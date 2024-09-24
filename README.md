@@ -196,6 +196,10 @@ $ sudo apt upgrade -y
 
 https://markdown.net.br/sintaxe-basica/
 
+https://netplan.io/
+
+https://netplan.io/examples
+
 https://docs.docker.com/engine/install/ubuntu/
 
 https://kubernetes.io/docs/setup/
