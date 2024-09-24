@@ -101,12 +101,12 @@ Adicione o conteúdo conforme o exemplo a seguir. Como neste caso não temos um 
 Exemplo de adição ao arquivo **/etc/hosts**:
 
 >
->127.0.0.1 localhost
->127.0.1.1 k8smaster01
->192.168.18.201   k8smaster01
->192.168.18.202   k8smaster02
->192.168.18.203   k8sworker01
->192.168.18.204   k8sworker02
+>127.0.0.1 localhost \
+>127.0.1.1 k8smaster01 \
+>192.168.18.201   k8smaster01 \
+>192.168.18.202   k8smaster02 \
+>192.168.18.203   k8sworker01 \
+>192.168.18.204   k8sworker02 \
 >192.168.18.205   k8sworker03
 >
 
