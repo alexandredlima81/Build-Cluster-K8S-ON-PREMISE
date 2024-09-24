@@ -100,8 +100,8 @@ $ vim /etc/hosts/50-cloud-init.yaml
 
 >
 >network: \
->  version: 2 \
->  renderer: networkd \
+  >  version: 2 \
+  >  renderer: networkd \
 >  ethernets: \
 >    enp0s3: \
 >      dhcp4: no \
