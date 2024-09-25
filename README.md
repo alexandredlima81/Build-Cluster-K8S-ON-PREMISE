@@ -80,7 +80,7 @@ Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo 
 
 **Sintaxe:**
 ```bash
-$ sudo hostnamectl set-hostname “k8s-master01” && exec bash
+sudo hostnamectl set-hostname “k8s-master01” && exec bash
 ```
 
 ## 2: CONFIGURAR INTERFACE DE REDE USANDO O NETPLAN (VALIDAR O NOME DA INTERFACE) 
@@ -94,13 +94,13 @@ Para editar o arquivos use a sintaxe a seguir:
 
 **Sintaxe:**
 ```bash
-$ sudo nano /etc/netplan/50-cloud-init.yaml
+sudo nano /etc/netplan/50-cloud-init.yaml
 ```
 ou se preferir
 
 **Sintaxe:**
 ```bash
-$ sudo vim /etc/hosts/50-cloud-init.yaml
+sudo vim /etc/hosts/50-cloud-init.yaml
 ```
 
 >
@@ -119,13 +119,13 @@ Aplicar a configuração permanentemente após testar:
 
 **Sintaxe:**
 ```bash
-$ sudo netplan apply
+sudo netplan apply
 ```
 Feito isso valide se o ip foi atribuido.
 
 **Sintaxe:**
 ```bash
-$ sudo ip address
+sudo ip address
 ```
 
 ## 3: CONFIGURAR O ARQUIVO /etc/hosts 
@@ -136,13 +136,13 @@ Para editar o arquivos use a sintaxe a seguir:
 
 **Sintaxe:**
 ```bash
-$ sudo nano /etc/hosts
+sudo nano /etc/hosts
 ```
 ou se preferir
 
 **Sintaxe:**
 ```bash
-$ sudo vim /etc/hosts
+sudo vim /etc/hosts
 ```
 
 Adicione o conteúdo conforme o exemplo a seguir. Como neste caso não temos um DNS, é necessário adicionar os endereços IP com seus respectivos nomes para permitir a resolução de nomes dentro do cluster Kubernetes.
@@ -170,29 +170,30 @@ Exemplo de adição ao arquivo **/etc/hosts**:
 
 **Sintaxe:**
 ```bash
-$ sudo swapoff -a
+sudo swapoff -a
 ```
 
 Em seguida comentamos a entrada do **swap** no arquivo **/etc/fstab** para evitar que ele seja ativado após reinicializações.
 
 **Sintaxe:**
 ```bash
-$ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 ## 5: ATUALIZAR O SISTEMA 
 > **(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)**
+
 Atualize a lista de pacotes disponíveis no repositório.
 
 **Sintaxe:**
 ```bash
-$ sudo apt update
+sudo apt update
 ```
 
 Instale as atualizações de pacotes no sistema para garantir que o ambiente esteja com as versões mais recentes e seguras dos softwares.
 
 **Sintaxe:**
 ```bash
-$ sudo apt upgrade -y
+sudo apt upgrade -y
 ```
 
 ## 6: ADICIONAR KERNEL MODULES E PARÂMETROS
@@ -231,6 +232,57 @@ Aplique as mudanças:
 ```bash
 sudo sysctl --system
 ```
+
+## 7: INSTALAR O DOCKER E CONTAINERD
+> **(REALIZAR NOS MASTERS E NOS WORKERS)**
+
+Desinstalar possiveis pacotes conflitantes, removendo qualquer versão anterior do Docker e pacotes relacionados que possam causar conflitos.
+
+**Sintaxe:**
+```bash
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+```
+
+Configurar o Repositório APT do Docker.
+Adicionando a chave GPG oficial do Docker e configurando o repositório.
+
+**Sintaxe:**
+```bash
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+Instalar o Docker a versão mais recente dos pacotes necessários.
+
+**Sintaxe:**
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates socat
+```
+
+Configurar o containerd para usar o systemd como cgroup.
+
+**Sintaxe:**
+```bash
+containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+```
+
+Reiniciar e habilitar o containerd para que ele inicie automaticamente.
+
+**Sintaxe:**
+```bash
+sudo systemctl restart containerd
+sudo systemctl enable containerd
+```
+
+
 
 ## Links de referência
 
