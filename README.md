@@ -71,7 +71,7 @@ Como ELK Stack (Elasticsearch, Logstash, Kibana) ou EFK Stack (Elasticsearch, Fl
 
 Essa estrutura define os principais componentes do cluster Kubernetes, detalhando o papel de cada um e as funções essenciais para a operação do ambiente on-premise.
 
-# CONFIGURANDO CLUSTER K8S
+# CONFIGURANDO O AMBIENTE PARA O CLUSTER K8S
 
 ## 1: CONFIGURAR O HOSTNAME 
 > **(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)**
@@ -234,7 +234,7 @@ sudo sysctl --system
 ```
 
 ## 7: INSTALAR O DOCKER E CONTAINERD
-> **(REALIZAR NOS MASTERS E NOS WORKERS)**
+> **(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)**
 
 Desinstalar possiveis pacotes conflitantes, removendo qualquer versão anterior do Docker e pacotes relacionados que possam causar conflitos.
 
@@ -282,6 +282,48 @@ sudo systemctl restart containerd
 sudo systemctl enable containerd
 ```
 
+## 8. INSTALAÇÃO KUBERNETES K8S
+> **(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)**
+
+Após preparar o ambiente, instalar os componentes essenciais do Kubernetes no seu host. 
+
+Recupere a chave de assinatura pública para repositórios de pacotes do Kubernetes.
+
+**Sintaxe:**
+```bash
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+```
+
+Execute o seguinte comando para adicionar o repositório apt do Kubernetes apropriado:
+
+**Sintaxe:**
+```bash
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+Atualize suas listas de pacotes e instale os componentes do Kubernetes:
+
+**Sintaxe:**
+```bash
+sudo apt-get update
+sudo apt-get install kubelet kubeadm kubectl
+```
+Evite atualizações automáticas desses componentes fixando suas versões:
+
+**Sintaxe:**
+```bash
+sudo apt-mark hold kubelet kubeadm kubectl
+```
+Opcionalmente, habilite o serviço kubelet para iniciar imediatamente com este comando:
+
+**Sintaxe:**
+```bash
+sudo systemctl enable --now kubelet
+```
+
+Agora queo Kubernetes foi instalado com sucesso em todos os seus nós, a seção a seguir o guiará pela implantação de aplicativos usando esta poderosa ferramenta de orquestração.:
+
+Como implantar aplicativos no Kubernetes, com todos os componentes necessários agora instalados e configurados, vamos implantar seu primeiro aplicativo em seus nós. Esteja ciente de quais nós cada etapa é implementada.:
+
 
 
 ## Links de referência
@@ -299,6 +341,3 @@ https://kubernetes.io/docs/setup/
 
 
 </p>
-
-
-$ sudo apt update
