@@ -320,9 +320,7 @@ Opcionalmente, habilite o serviço kubelet para iniciar imediatamente com este c
 sudo systemctl enable --now kubelet
 ```
 
-Agora queo Kubernetes foi instalado com sucesso em todos os seus nós, a seção a seguir o guiará pela implantação de aplicativos usando esta poderosa ferramenta de orquestração.:
-
-Como implantar aplicativos no Kubernetes, com todos os componentes necessários agora instalados e configurados, vamos implantar seu primeiro aplicativo em seus nós. Esteja ciente de quais nós cada etapa é implementada.:
+# INSTRUÇÃO EM ANDAMENTO - CONTINUA
 
 
 
