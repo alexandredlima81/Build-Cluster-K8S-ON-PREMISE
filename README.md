@@ -356,7 +356,7 @@ kubeadm join 192.168.18.41:6443 --token k3dapw.1q6k0uuh2oicj8h0 \
 Nesta saída temos 4 informações importantes.
 
 1. Control-plane configurado com sucesso, isso indica que o Kubernetes foi inicializado corretamente no nó Master.
-2. Duas intruções para configurar acesso ao Cluster, caso esteja usando um usuário comum ou para o uso do usuário root.
+2. Aqui temos duas sugestoes de  configuração para acesso ao Cluster. Uma para um caso de uso de um usuário comum e outra para o caso de uso dde um usuário root.
 3. Implantar a rede de pods, para que os pods possam se comunicar.
 4. E por fim como adicionar nós workers ao cluster, utilizando o comando `kubeadm` join em cada nó worker. 
 
