@@ -322,14 +322,39 @@ sudo systemctl enable --now kubelet
 ## 9. INICIALIZAR O CLUSTER KUBERNETES K8S 
 > **(REALIZAR APENAS NO NÓ MASTER)**
 
-Com todos os etapas e requisitos anteriores em vigor, inicialize o cluster Kubernetes no nó Master usando o seguinte comando `Kubeadm`:
+Com todas as etapas e requisitos anteriores em vigor, inicialize o cluster Kubernetes no nó Master usando o seguinte comando `Kubeadm`:
 
 **Sintaxe:**
 ```bash
 sudo kubeadm init
 ```
 
-A saída deve algo parecido a este exemplo abaixo:
+Ao final você deve obter um saída parecida com esta no exemplo abaixo:
+
+`
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.18.41:6443 --token k3dapw.1q6k0uuh2oicj8h0 \
+        --discovery-token-ca-cert-hash sha256:ad7fde0e8ad4e1c0169454cce16b5910feafdd678b554f3cdd5604b481f88fe0
+
+`
+
 
 
 
