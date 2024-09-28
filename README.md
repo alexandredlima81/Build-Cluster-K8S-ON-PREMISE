@@ -319,6 +319,20 @@ Opcionalmente, habilite o serviço kubelet para iniciar imediatamente com este c
 ```bash
 sudo systemctl enable --now kubelet
 ```
+## 9. INICIALIZAR O CLUSTER KUBERNETES K8S 
+> **(REALIZAR APENAS NO NÓ MASTER)**
+
+Com todos os etapas e requisitos anteriores em vigor, inicialize o cluster Kubernetes no nó Master usando o seguinte comando `Kubeadm`:
+
+**Sintaxe:**
+```bash
+sudo kubeadm init
+```
+
+A saída deve algo parecido a este exemplo abaixo:
+
+
+
 
 # INSTRUÇÃO EM ANDAMENTO - CONTINUA
 
