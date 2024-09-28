@@ -177,7 +177,7 @@ Em seguida comentamos a entrada do **swap** no arquivo **/etc/fstab** para evita
 
 **Sintaxe:**
 ```bash
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i '/swap/s/^\(.*\)$/#\1/' /etc/fstab
 ```
 ## 5: ATUALIZAR O SISTEMA 
 > **(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)**
