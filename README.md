@@ -331,8 +331,8 @@ sudo kubeadm init
 
 Ao final você deve obter um saída parecida com esta no exemplo abaixo:
 
-
-`Your Kubernetes control-plane has initialized successfully!
+```
+Your Kubernetes control-plane has initialized successfully!
 
 To start using your cluster, you need to run the following as a regular user:
 
@@ -351,12 +351,8 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 Then you can join any number of worker nodes by running the following on each as root:
 
 kubeadm join 192.168.18.41:6443 --token k3dapw.1q6k0uuh2oicj8h0 \
-        --discovery-token-ca-cert-hash sha256:ad7fde0e8ad4e1c0169454cce16b5910feafdd678b554f3cdd5604b481f88fe0`
-
-
-
-
-
+        --discovery-token-ca-cert-hash sha256:ad7fde0e8ad4e1c0169454cce16b5910feafdd678b554f3cdd5604b481f88fe0
+```
 
 
 # INSTRUÇÃO EM ANDAMENTO - CONTINUA
