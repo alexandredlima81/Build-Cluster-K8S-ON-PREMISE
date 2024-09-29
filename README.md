@@ -329,7 +329,9 @@ Com todas as etapas e requisitos anteriores em vigor, inicialize o cluster Kuber
 sudo kubeadm init
 ```
 
-Ao final você deve obter um saída parecida com esta no exemplo abaixo:
+Ao final você deve obter um saída parecida com esta abaixo.
+
+**Exemplo de saída:**
 
 ```
 Your Kubernetes control-plane has initialized successfully!
@@ -360,8 +362,108 @@ Nesta saída temos 4 informações importantes.
 3. Uma recomendação para implantar a rede de pods, para que os pods possam se comunicar.
 4. E por fim, uma instrução de como adicionar nós workers ao cluster, utilizando o comando `kubeadm join` passando o token de autenticação, que deve ser realizado  em cada novo nó worker. 
 
+## 10. INSTALE O PLUGIN DE REDE CALICO NO NÓ MASTER 
+> **(REALIZAR APENAS NO NÓ MASTER)**
 
-# INSTRUÇÃO EM ANDAMENTO - CONTINUA
+Para permitir a comunicação entre os pods no cluster, instale o plugin de rede Calico executando o seguinte comando no nó mestre:
+
+**Sintaxe:**
+```bash
+sudo kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+```
+
+Não é necessário instalar o plugin de rede nos nós Workers. O plugin de rede, como o Calico, é instalado apenas no nó Master, e ele 
+se encarrega de configurar a comunicação entre os pods em todos os nós do cluster, incluindo os workers.
+Os nós workers serão automaticamente integrados à rede assim que forem adicionados ao cluster.
+
+## 10. VERIFICAR O CLUSTER E TESTAR
+> **(REALIZAR APENAS NO NÓ MASTER)**
+
+Agora que o cluster foi configurado, vamos verificar se ele está funcionando corretamente.
+
+Execute os seguintes comandos no nó Master:
+
+**Sintaxe:**
+```bash
+sudo kubectl get pods -n kube-system
+sudo kubectl get nodes
+```
+A saída deve mostrar os pods essenciais do sistema em execução e o status dos nós do cluster como "Ready", confirmando que tanto o nó mestre quanto os workers estão prontos e funcionando corretamente.
+
+**Exemplo de saída:**
+
+```
+root@k8s-master01:~# kubectl get pods -n kube-system
+NAME                                       READY   STATUS    RESTARTS      AGE
+calico-kube-controllers-5b9b456c66-ld64j   1/1     Running   0             13m
+calico-node-bhhjk                          1/1     Running   0             13m
+calico-node-vjgns                          1/1     Running   0             13m
+coredns-55cb58b774-fqx7j                   1/1     Running   0             6d19h
+coredns-55cb58b774-xf4qx                   1/1     Running   0             6d19h
+etcd-k8s-master01                          1/1     Running   3 (19m ago)   6d19h
+kube-apiserver-k8s-master01                1/1     Running   3 (19m ago)   6d19h
+kube-controller-manager-k8s-master01       1/1     Running   3 (19m ago)   6d19h
+kube-proxy-5fvdz                           1/1     Running   3 (19m ago)   6d19h
+kube-proxy-nstdq                           1/1     Running   1 (18m ago)   22h
+kube-scheduler-k8s-master01                1/1     Running   3 (19m ago)   6d19h
+```
+```
+root@k8s-master01:~# kubectl get nodes
+NAME           STATUS   ROLES           AGE     VERSION
+k8s-master01   Ready    control-plane   6d19h   v1.30.5
+k8sworker01    Ready    <none>          22h     v1.30.5
+```
+Se todos os pods e nós estiverem com o status "Running" e "Ready", o cluster foi configurado corretamente e está operacional.
+
+## 11. IMPLANTAR UM APLICATIVO DE TESTE NO CLUSTER
+> **(REALIZAR APENAS NO NÓ MASTER)**
+
+Para testar a funcionalidade do cluster, implante um aplicativo de exemplo executando o seguinte comando no nó Master:
+
+**Sintaxe:**
+```bash
+sudo kubectl run nginx --image=nginx
+```
+
+Isso cria um pod com a imagem do Nginx, permitindo verificar se os pods estão sendo executados corretamente no cluster.
+
+**Exemplo de saída:**
+
+```
+root@k8s-master01:~# kubectl run nginx --image=nginx
+pod/nginx created
+```
+
+Para verificar se o pod esta executando corretamente, execute o seguinte comando no nó Master:
+
+**Sintaxe:**
+```bash
+sudo kubectl get pods
+```
+
+**Exemplo de saída:**
+
+```
+root@k8s-master01:~# kubectl get pods
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          90s
+```
+
+Após validação remova o pod, execute o seguinte comando no nó Master:
+
+**Sintaxe:**
+```bash
+sudo kubectl delete pod nginx
+```
+
+**Exemplo de saída:**
+
+```
+root@k8s-master01:~# kubectl delete pod nginx
+pod "nginx" deleted
+```
+
+
 
 
 
