@@ -463,10 +463,46 @@ root@k8s-master01:~# kubectl delete pod nginx
 pod "nginx" deleted
 ```
 
+## EXTRAS !!!
 
+> À medida que o Kubernetes é aperfeiçoado a saída pode mudar ocasionalmente.
 
+Abaixo a relação de alguns comandos úteis para o dia a dia.
 
+**Verificando a versão do Cluster**
 
+```bash
+sudo kubectl version
+```
+**Exemplo de saída:**
+```
+root@k8s-master01:~# kubectl version
+Client Version: v1.30.5
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+```
+
+**Verificando a saude do Cluster,diagnóstico simples**
+```bash
+sudo kubectl get componentstatuses
+```
+**Exemplo de saída:**
+```
+root@k8s-master01:~# kubectl get componentstatuses
+Warning: v1 ComponentStatus is deprecated in v1.19+
+NAME                 STATUS    MESSAGE   ERROR
+scheduler            Healthy   ok
+controller-manager   Healthy   ok
+etcd-0               Healthy   ok
+```
+
+** **
+```bash
+
+```
+**Exemplo de saída:**
+```
+
+```
 ## Links de referência
 
 https://markdown.net.br/sintaxe-basica/
