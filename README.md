@@ -82,6 +82,16 @@ Atribua o hostname do nó em questão. Neste exemplo, estamos atribuindo o novo 
 ```bash
 sudo hostnamectl set-hostname “k8s-master01” && exec bash
 ```
+Repta o processo para atribuir o hostname nos demais nós em questão, sejam eles nós Masters ou Workers.
+
+**Sintaxe:**
+```bash
+sudo hostnamectl set-hostname “k8s-worker01” && exec bash
+```
+**Sintaxe:**
+```bash
+sudo hostnamectl set-hostname “k8s-worker02” && exec bash
+```
 
 ## 2: CONFIGURAR INTERFACE DE REDE USANDO O NETPLAN (VALIDAR O NOME DA INTERFACE) 
 > **(REALIZAR CONFIGURAÇÃO EM NÓS MASTERS E WORKERS)**
