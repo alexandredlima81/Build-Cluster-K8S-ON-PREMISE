@@ -430,7 +430,7 @@ Se todos os pods e nós estiverem com o status "Running" e "Ready", o cluster fo
 
 Após a configuração inicial do nó Worker, siga os passos abaixo para ingressá-lo ao cluster Kubernetes existente.
 
-1️⃣ Obter o Token de Junção no Nó Master (**Caso não tenha o Token**)
+1️⃣ Obter o Token de Junção no Nó Master (**Caso não tenha o Token**) \
 Se você ainda não possui um token válido, gere um novo executando o seguinte comando no nó Master:
 
 **Sintaxe:**
@@ -445,7 +445,7 @@ kubeadm join 192.168.18.201:6443 --token <token-gerado> --discovery-token-ca-cer
 ```
 📌 Anote esse comando, pois ele pode ser reutilizado para adicionar futuros nós ao cluster sem precisar gerar um novo token.
 
-2️⃣ Usar um Token Existente (Caso Já Tenha)
+2️⃣ Usar um Token Existente (Caso Já Tenha) \
 Se já possui um token válido e deseja reutilizá-lo, basta executar o comando de junção diretamente no nó Worker:
 
 **Sintaxe:**
@@ -467,7 +467,7 @@ Se necessário, obtenha novamente o hash do CA com:
 openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | \
 sha256sum | awk '{print $1}'
 ```
-3️⃣ Executar o Comando de Junção no Nó Worker
+3️⃣ Executar o Comando de Junção no Nó Worker \
 Agora, no nó Worker que deseja adicionar ao cluster, execute o comando correspondente:
 
 **Sintaxe:**
@@ -476,7 +476,7 @@ kubeadm join 192.168.18.201:6443 --token <token> --discovery-token-ca-cert-hash 
 ```
 Aguarde a conclusão do processo.
 
-4️⃣ Validar a Adição do Nó no Cluster
+4️⃣ Validar a Adição do Nó no Cluster \
 No nó Master, execute o seguinte comando para verificar se o nó Worker foi adicionado corretamente:
 
 **Sintaxe:**
