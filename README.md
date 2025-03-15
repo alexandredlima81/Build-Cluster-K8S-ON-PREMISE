@@ -422,9 +422,12 @@ kube-scheduler-k8s-master01                1/1     Running   3 (19m ago)   6d19h
 root@k8s-master01:~# kubectl get nodes
 NAME           STATUS   ROLES           AGE     VERSION
 k8s-master01   Ready    control-plane   6d19h   v1.30.5
-k8sworker01    Ready    <none>          22h     v1.30.5
+
 ```
 Se todos os pods e nós estiverem com o status "Running" e "Ready", o cluster foi configurado corretamente e está operacional.
+
+Perceba que por padrão todo nó onde o **kubeadm init** é executado será automaticamente marcado com a role "control-plane".
+Responsável por gerenciar o cluster e executar componentes críticos, como API Server, Controller Manager, Scheduler e etcd. Por isso definimos ele como nó Master.
 
 ## 11. INSERIR UM NÓ WORKER NO CLUSTER
 > **(REALIZAR APENAS EM NÓS WORKERS)**
@@ -484,14 +487,52 @@ No nó Master, execute o seguinte comando para verificar se o nó Worker foi adi
 ```bash
 kubectl get nodes
 ```
-Se tudo estiver correto, o novo nó Worker aparecerá na lista com o status Ready.
+Exemplo de saída:
 
+```
+root@k8s-master01:~# kubectl get nodes
+NAME           STATUS   ROLES           AGE     VERSION
+k8s-master01   Ready    control-plane   6d19h   v1.30.5
+k8s-worker01   Ready    <none>          11h     v1.30.5
+k8s-worker02   Ready    <none>          7m10s   v1.30.5
+
+```
+Se todos nós estiverem com o status "Running" e "Ready", o cluster foi configurado corretamente e está operacional.
+Perceba que por padrão todo nó ingressado no cluster é executado será automaticamente marcado com a role "<none>". 
+Por isso sera necessario definimo uma role ao dois novos nó que foram ingressados no Cluster.
+Neste caso vamos defini-los com a role **worker*.
+
+Poi são eles que serao responsáveis por executar os pods e workloads do cluster.
+
+Para definir o papel correto para os workers, execute este comando no control plane (k8s-master01):
+
+bash
+```
+kubectl label node k8s-worker01 node-role.kubernetes.io/worker=
+kubectl label node k8s-worker02 node-role.kubernetes.io/worker=
+```
+Ainda no nó Master, execute o seguinte comando para verificar se o papel (role) worker foi adicionado corretamente:
+
+**Sintaxe:**
+```bash
+kubectl get nodes
+```
+Exemplo de saída:
+
+```
+root@k8s-master01:~# kubectl get nodes
+NAME           STATUS   ROLES           AGE     VERSION
+k8s-master01   Ready    control-plane   6d19h   v1.30.5
+k8s-worker01   Ready    worker          11h     v1.30.5
+k8s-worker02   Ready    worker          7m10s   v1.30.5
+```
 ## 12. IMPLANTAR UM APLICATIVO DE TESTE NO CLUSTER
 > **(REALIZAR APENAS NO NÓ MASTER)**
 
 Para testar a funcionalidade do cluster, implante um aplicativo de exemplo executando o seguinte comando no nó Master:
 
 **Sintaxe:**
+
 ```bash
 sudo kubectl run nginx --image=nginx
 ```
