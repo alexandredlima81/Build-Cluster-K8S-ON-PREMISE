@@ -370,7 +370,8 @@ Nesta saída temos 4 informações importantes.
 1. Control-plane configurado com sucesso, isso indica que o Kubernetes foi inicializado corretamente no nó Master.
 2. Aqui temos duas sugestoes de configuração para acesso ao Cluster. Uma para um caso de uso de um usuário comum e outra para o caso de uso dde um usuário root.
 3. Uma recomendação para implantar a rede de pods, para que os pods possam se comunicar.
-4. E por fim, uma instrução de como adicionar nós workers ao cluster, utilizando o comando `kubeadm join` passando o token de autenticação, que deve ser realizado  em cada novo nó worker. Salve esta sintaxe junto ao Token gerado nesta saída, para que possa ser utilizado no Join dos futuros Nós caso não queira gerar um novo Token.
+4. E por fim, uma instrução de como adicionar nós workers ao cluster, utilizando o comando `kubeadm join` passando o token de autenticação, que deve ser realizado  em cada novo nó worker.
+   📌 Anote a sintaxe completa desta intrução junto do Token, pois ele pode ser reutilizado para adicionar futuros nós ao cluster sem precisar gerar um novo token.
 
 ## 10. INSTALE O PLUGIN DE REDE CALICO NO NÓ MASTER 
 > **(REALIZAR APENAS NO NÓ MASTER)**
