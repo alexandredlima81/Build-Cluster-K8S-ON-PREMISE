@@ -370,7 +370,7 @@ Nesta saída temos 4 informações importantes.
 1. Control-plane configurado com sucesso, isso indica que o Kubernetes foi inicializado corretamente no nó Master.
 2. Aqui temos duas sugestoes de configuração para acesso ao Cluster. Uma para um caso de uso de um usuário comum e outra para o caso de uso dde um usuário root.
 3. Uma recomendação para implantar a rede de pods, para que os pods possam se comunicar.
-4. E por fim, uma instrução de como adicionar nós workers ao cluster, utilizando o comando `kubeadm join` passando o token de autenticação, que deve ser realizado  em cada novo nó worker. 
+4. E por fim, uma instrução de como adicionar nós workers ao cluster, utilizando o comando `kubeadm join` passando o token de autenticação, que deve ser realizado  em cada novo nó worker. Salve esta sintaxe junto ao Token gerado nesta saída, para que possa ser utilizado no Join dos futuros Nós caso não queira gerar um novo Token.
 
 ## 10. INSTALE O PLUGIN DE REDE CALICO NO NÓ MASTER 
 > **(REALIZAR APENAS NO NÓ MASTER)**
@@ -426,8 +426,64 @@ k8sworker01    Ready    <none>          22h     v1.30.5
 Se todos os pods e nós estiverem com o status "Running" e "Ready", o cluster foi configurado corretamente e está operacional.
 
 ## 11. INSERIR UM NÓ WORKER NO CLUSTER
+> **(REALIZAR APENAS EM NÓS WORKERS)**
 
-Em andamento.
+Após a configuração inicial do nó Worker, siga os passos abaixo para ingressá-lo ao cluster Kubernetes existente.
+
+1️⃣ Obter o Token de Junção no Nó Master (**Caso não tenha o Token**)
+Se você ainda não possui um token válido, gere um novo executando o seguinte comando no nó Master:
+
+**Sintaxe:**
+```bash
+kubeadm token create --print-join-command
+```
+Esse comando retornará uma saída semelhante a:
+
+**Sintaxe:**
+```bash
+kubeadm join 192.168.18.201:6443 --token <token-gerado> --discovery-token-ca-cert-hash sha256:<hash>
+```
+📌 Anote esse comando, pois ele pode ser reutilizado para adicionar futuros nós ao cluster sem precisar gerar um novo token.
+
+2️⃣ Usar um Token Existente (Caso Já Tenha)
+Se já possui um token válido e deseja reutilizá-lo, basta executar o comando de junção diretamente no nó Worker:
+
+**Sintaxe:**
+```bash
+kubeadm join 192.168.18.201:6443 --token <token-existente> --discovery-token-ca-cert-hash sha256:<hash>
+```
+Isso permitirá que o nó Worker entre no cluster sem precisar criar um novo token.
+
+Caso tenha perdido o token e não queira gerar um novo, liste os tokens existentes no nó Master com:
+
+**Sintaxe:**
+```bash
+kubeadm token list
+```
+Se necessário, obtenha novamente o hash do CA com:
+
+**Sintaxe:**
+```bash
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | \
+sha256sum | awk '{print $1}'
+```
+3️⃣ Executar o Comando de Junção no Nó Worker
+Agora, no nó Worker que deseja adicionar ao cluster, execute o comando correspondente:
+
+**Sintaxe:**
+```bash
+kubeadm join 192.168.18.201:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash>
+```
+Aguarde a conclusão do processo.
+
+4️⃣ Validar a Adição do Nó no Cluster
+No nó Master, execute o seguinte comando para verificar se o nó Worker foi adicionado corretamente:
+
+**Sintaxe:**
+```bash
+kubectl get nodes
+```
+Se tudo estiver correto, o novo nó Worker aparecerá na lista com o status Ready.
 
 ## 12. IMPLANTAR UM APLICATIVO DE TESTE NO CLUSTER
 > **(REALIZAR APENAS NO NÓ MASTER)**
