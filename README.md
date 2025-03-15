@@ -415,7 +415,11 @@ k8sworker01    Ready    <none>          22h     v1.30.5
 ```
 Se todos os pods e nós estiverem com o status "Running" e "Ready", o cluster foi configurado corretamente e está operacional.
 
-## 11. IMPLANTAR UM APLICATIVO DE TESTE NO CLUSTER
+## 11. INSERIR UM NÓ WORKER NO CLUSTER
+
+Em andamento.
+
+## 12. IMPLANTAR UM APLICATIVO DE TESTE NO CLUSTER
 > **(REALIZAR APENAS NO NÓ MASTER)**
 
 Para testar a funcionalidade do cluster, implante um aplicativo de exemplo executando o seguinte comando no nó Master:
